@@ -1,0 +1,21 @@
+{
+
+    "manifest_version": 2,
+    "name": "Trello Experiment",
+    "version": "1.0",
+  
+    "description": "Changing some stuff on trello.com",
+  
+    "icons": {
+      "48": "icons/border-48.png"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["*://*.trello.com/*"],
+        "js": ["trello-experiment.js"]
+      }
+    ]
+  
+  }
+  
