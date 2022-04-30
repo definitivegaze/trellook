@@ -7,13 +7,16 @@ listOfCards.forEach(card => {
     listCardLabels = card.querySelector(".list-card-labels")
     // console.log(listCardLabels.classList)
     if (cardLabels = listCardLabels.querySelector(".card-label")){
-        cardLabels.classList.forEach(cardLabel => {
+        var count = 0
+        for (cardLabel in cardLabels.classList) {
             // console.log(cardLabel)
             if (cardLabel.includes("card-label-")) {
+                count += 1;
                 console.log(cardLabel.substr(11,))
                 card.style.backgroundColor = cardLabel.substr(11,);
             }
-        })
+        }
+        console.log(count)
     }
         // card.style.backgroundColor = "#eb5a4647";
     })
