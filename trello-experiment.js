@@ -65,23 +65,20 @@ function fillAllCards(){
     });
 }
 
-
-document.onreadystatechange = function(){
+document.onreadystatechange = () => {
     if (document.readyState === "complete"){
         loadAllLabelText();
         fillAllCards();
     }
 }
 
-const target = document.getElementById("board");
-
 let observer = new MutationObserver(() => {
     console.log("card label refreshed")
     loadAllLabelText();
     fillAllCards();
 })
-
-let observerConfig = {
+const target = document.getElementById("board");
+const observerConfig = {
     subtree: true,
     childList: true,
     attributes: true
