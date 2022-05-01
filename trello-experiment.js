@@ -33,11 +33,9 @@ function getLabelColours(card) {
         cardClassLabels.forEach(cardClassLabel => {
             if (cardClassLabel.includes("card-label-")){
                 labelColour = cardClassLabel.split("-")[2];
-                // console.log(labelColour);
                 listOfLabelColours.push(labelColour)};
             })
     }
-    // console.log(listOfLabelColours);
     return (card,listOfLabelColours);
 }
 
@@ -52,7 +50,6 @@ function changeBackgroundColour(card, listOfColours){
         );
         listOfColoursJoin = listOfColourWithPosition.join(`, `);
         listOfColoursString = `linear-gradient(135deg, ${listOfColoursJoin})`;
-        // console.log(listOfColoursString)
         card.style.backgroundImage = listOfColoursString;
     }
 }
@@ -66,11 +63,17 @@ function fillAllCards(){
     });
 }
 
-window.addEventListener("load", () => {
+// the event listener load does not work on first load, only work on reload..
+window.onload = () => {
+// window.addEventListener("load", () => {
     loadAllLabelText();
     fillAllCards();
-});
+}
+// );
 
+
+// the event listener load does not work on first load, only work on reload..
+// window.onload = () => {
 window.addEventListener("load", () => {
     var observer = new MutationObserver(() => {
         console.log("card label refreshed")
@@ -84,4 +87,5 @@ window.addEventListener("load", () => {
         attributes: true
     };
     observer.observe(target, observerConfig);
-});
+}
+);
