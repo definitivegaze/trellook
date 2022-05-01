@@ -24,29 +24,22 @@ function get_label_colours(card) {
             })
     }
     console.log(listOfLabelColours);
-    return listOfLabelColours;
+    return (card,listOfLabelColours);
 }
 
-// function change_background_colour(card, listOfColours){
-//     card.style.backgroundColor
-// }
+function change_background_colour(card, listOfColours){
+    if (listOfColours.length == 1){
+            card.style.backgroundColor = listOfColours[0];
+    }
+    if (listOfColours.length > 1){
+    listOfColoursString = listOfColours.join(", ");
+    console.log(listOfColoursString);
+    card.style.backgroundImage = `linear-gradient(to right, ${listOfColoursString})`;
+    }
+}
 
-listOfCards.forEach(get_label_colours);
-
-// listOfCards.forEach(card => {
-//     listCardLabels = card.querySelector(".list-card-labels")
-//     // console.log(listCardLabels.classList)
-//     if (cardLabels = listCardLabels.querySelector(".card-label")){
-//         var count = 0
-//         for (cardLabel in cardLabels.classList) {
-//             // console.log(cardLabel)
-//             if (cardLabel.includes("card-label-")) {
-//                 count += 1;
-//                 console.log(cardLabel.substr(11,))
-//                 card.style.backgroundColor = cardLabel.substr(11,);
-//             }
-//         }
-//         console.log(count)
-//     }
-//         // card.style.backgroundColor = "#eb5a4647";
-//     })
+listOfCards.forEach(card => {
+    listOfColours = get_label_colours(card);
+    change_background_colour(card, listOfColours);
+    }
+);
