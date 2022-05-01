@@ -1,27 +1,28 @@
-const rootStyle = document.getElementById("trello-root")
-rootStyle.classList.add("body-card-label-text")
+
+function loadAllLabelText(){
+    let rootStyle = document.getElementById("trello-root")
+    rootStyle.classList.add("body-card-label-text")
+}
 
 // get list of cards
 // for each card, get list of card labels
 // get colours from card labels
 // filled card with colours
 
-const colourMapping = {
-    "green": "#bde3b5",
-    "red": "#ff9999",
+const colourMap = {
+    "green": "#cdeac8",
+    "red": "#ffb3b3",
     "yellow": "#ffffb3",
-    "orange": "#ffff99",
-    "blue": "#99daff",
-    "purple": "#d9aaee",
-    "sky": "#99f1ff",
-    "pink": "#ff99d8",
-    "black": "#bcc8dc",
-    "lime": "#a5f3cd"
+    "orange": "#ffdfb3",
+    "blue": "#b3e3ff",
+    "purple": "#e2bff2",
+    "sky": "#b3f5ff",
+    "pink": "#ffb3e2",
+    "black": "#cdd6e5",
+    "lime": "#bcf6da"
 }
 
-const listOfCards = document.querySelectorAll(".list-card.js-member-droppable.ui-droppable")
-
-function get_label_colours(card) {
+function getLabelColours(card) {
 
     // there can be 0 or multiple card label per card
     let cardLabels = card.querySelectorAll(".card-label");
@@ -40,21 +41,42 @@ function get_label_colours(card) {
     return (card,listOfLabelColours);
 }
 
-function change_background_colour(card, listOfColours){
+function changeBackgroundColour(card, listOfColours){
     if (listOfColours.length == 1){
-        card.style.backgroundColor = colourMapping[listOfColours[0]];
+        card.style.backgroundColor = colourMap[listOfColours[0]];
     }
     if (listOfColours.length > 1){
         percentage = (1/(listOfColours.length)*100).toFixed(0)
-        listOfColoursJoin = listOfColours.map(colour => colourMapping[colour]).join(` ${percentage}%, `);
-        listOfColoursString = `linear-gradient(150deg, ${listOfColoursJoin} ${percentage}%)`;
+        listOfColourWithPosition = listOfColours.map(c => 
+            `${colourMap[c]} ${percentage*listOfColours.indexOf(c)}% ${percentage*(listOfColours.indexOf(c)+1)}%`
+        );
+        listOfColoursJoin = listOfColourWithPosition.join(`, `);
+        listOfColoursString = `linear-gradient(135deg, ${listOfColoursJoin})`;
         console.log(listOfColoursString)
         card.style.backgroundImage = listOfColoursString;
     }
 }
 
-listOfCards.forEach(card => {
-    listOfColours = get_label_colours(card);
-    change_background_colour(card, listOfColours);
-    }
-);
+function fillAllCards(){
+    let listOfCards = document.querySelectorAll(".list-card.js-member-droppable.ui-droppable")
+    listOfCards.forEach(card => {
+        listOfColours = getLabelColours(card);
+        changeBackgroundColour(card, listOfColours);
+    });
+}
+
+// fill_all_cards();
+
+// window.onload = function() {
+loadAllLabelText();
+fillAllCards();
+console.log(colourMap);
+// }
+
+// window.onload = function(){
+//     console.log("page reloaded");
+//     listOfCards.forEach(card => {
+//         listOfColours = get_label_colours(card);
+//         change_background_colour(card, listOfColours);
+//     });
+// }
