@@ -58,6 +58,7 @@ function changeBackgroundColour(card, listOfColours){
 }
 
 function fillAllCards(){
+    console.log("filling cards")
     let listOfCards = document.querySelectorAll(".list-card.js-member-droppable.ui-droppable")
     listOfCards.forEach(card => {
         listOfColours = getLabelColours(card);
@@ -65,23 +66,22 @@ function fillAllCards(){
     });
 }
 
-document.onreadystatechange = () => {
-    if (document.readyState === "complete"){
-        loadAllLabelText();
-        fillAllCards();
-    }
-}
-
-let observer = new MutationObserver(() => {
-    console.log("card label refreshed")
+window.addEventListener("load", () => {
     loadAllLabelText();
     fillAllCards();
-})
-const target = document.getElementById("board");
-const observerConfig = {
-    subtree: true,
-    childList: true,
-    attributes: true
-};
+});
 
-observer.observe(target, observerConfig);
+window.addEventListener("load", () => {
+    var observer = new MutationObserver(() => {
+        console.log("card label refreshed")
+        loadAllLabelText();
+        fillAllCards();
+    });
+    const target = document.getElementById("board");
+    const observerConfig = {
+        subtree: true,
+        childList: true,
+        attributes: true
+    };
+    observer.observe(target, observerConfig);
+});
