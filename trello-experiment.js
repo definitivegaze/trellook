@@ -1,7 +1,7 @@
 
 function loadAllLabelText(){
     let rootStyle = document.getElementById("trello-root");
-    console.log("finding root", rootStyle)
+    console.log("finding rootstyle")
     rootStyle.classList.add("body-card-label-text");
 }
 
@@ -56,8 +56,9 @@ function changeBackgroundColour(card, listOfColours){
 }
 
 function fillAllCards(){
-    let listOfCards = document.querySelectorAll(".list-card.js-member-droppable.ui-droppable");
-    console.log("finding cards", listOfCards);
+    // let listOfCards = document.querySelectorAll(".list-card.js-member-droppable.ui-droppable");
+    let listOfCards = document.querySelectorAll(".list-card");
+    console.log("finding cards", listOfCards.length);
     listOfCards.forEach(card => {
         listOfColours = getLabelColours(card);
         changeBackgroundColour(card, listOfColours);
@@ -65,16 +66,15 @@ function fillAllCards(){
 }
 
 function main(){
-    // loadAllLabelText();
+    loadAllLabelText();
     // fillAllCards();
     console.log("loading mutation observer");
     var observer = new MutationObserver(() => {
-        console.log("card label refreshed")
-        loadAllLabelText();
+        console.log("observed mutation");
+        // loadAllLabelText();
         fillAllCards();
+        console.log("card colours refreshed");
     });
-    // const target = document.getElementById("board");
-    // const target = document.body;
     observer.observe(document.body, {
         subtree: true,
         childList: true
