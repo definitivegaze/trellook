@@ -1,6 +1,10 @@
+// alert("loading script!")
+
+window.addEventListener("load", () => main());
 
 function loadAllLabelText(){
     let rootStyle = document.getElementById("trello-root");
+    console.log("finding root", rootStyle)
     rootStyle.classList.add("body-card-label-text");
 }
 
@@ -26,7 +30,7 @@ function getLabelColours(card) {
 
     // there can be 0 or multiple card label per card
     let cardLabels = card.querySelectorAll(".card-label");
-    let listOfLabelColours = []
+    let listOfLabelColours = [];
 
     for (let i = 0; i < cardLabels.length; i++) {
         let cardClassLabels = cardLabels[i].classList;
@@ -35,46 +39,38 @@ function getLabelColours(card) {
                 labelColour = cardClassLabel.split("-")[2];
                 listOfLabelColours.push(labelColour)};
             })
-    }
+    };
     return (card,listOfLabelColours);
 }
 
 function changeBackgroundColour(card, listOfColours){
     if (listOfColours.length == 1){
         card.style.backgroundColor = colourMap[listOfColours[0]];
-    }
+    };
     if (listOfColours.length > 1){
-        percentage = (1/(listOfColours.length)*100).toFixed(0)
+        percentage = (1/(listOfColours.length)*100).toFixed(0);
         listOfColourWithPosition = listOfColours.map(c => 
             `${colourMap[c]} ${percentage*listOfColours.indexOf(c)}% ${percentage*(listOfColours.indexOf(c)+1)}%`
         );
         listOfColoursJoin = listOfColourWithPosition.join(`, `);
         listOfColoursString = `linear-gradient(135deg, ${listOfColoursJoin})`;
         card.style.backgroundImage = listOfColoursString;
-    }
+    };
 }
 
 function fillAllCards(){
-    console.log("filling cards")
-    let listOfCards = document.querySelectorAll(".list-card.js-member-droppable.ui-droppable")
+    let listOfCards = document.querySelectorAll(".list-card.js-member-droppable.ui-droppable");
+    console.log("finding cards", listOfCards);
     listOfCards.forEach(card => {
         listOfColours = getLabelColours(card);
         changeBackgroundColour(card, listOfColours);
     });
 }
 
-// the event listener load does not work on first load, only work on reload..
-window.onload = () => {
-// window.addEventListener("load", () => {
+function main(){
     loadAllLabelText();
     fillAllCards();
-}
-// );
-
-
-// the event listener load does not work on first load, only work on reload..
-// window.onload = () => {
-window.addEventListener("load", () => {
+    console.log("loading mutation observer");
     var observer = new MutationObserver(() => {
         console.log("card label refreshed")
         loadAllLabelText();
@@ -88,4 +84,16 @@ window.addEventListener("load", () => {
     };
     observer.observe(target, observerConfig);
 }
-);
+
+// the event listener load does not work on first load, only work on reload..
+// window.onload = () => {
+//     console.log("the page is loaded");
+//     let cardlists = document.querySelectorAll(".list-card.js-member-droppable.ui-droppable");
+//     console.log("finding cards", cardlists);
+//     main();
+// };
+
+// window.addEventListener("load", () => {
+//     console.log("the page is loaded");
+//     main();
+// });
