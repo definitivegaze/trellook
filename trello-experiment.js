@@ -1,6 +1,3 @@
-// alert("loading script!")
-
-window.addEventListener("load", () => main());
 
 function loadAllLabelText(){
     let rootStyle = document.getElementById("trello-root");
@@ -68,32 +65,20 @@ function fillAllCards(){
 }
 
 function main(){
-    loadAllLabelText();
-    fillAllCards();
+    // loadAllLabelText();
+    // fillAllCards();
     console.log("loading mutation observer");
     var observer = new MutationObserver(() => {
         console.log("card label refreshed")
         loadAllLabelText();
         fillAllCards();
     });
-    const target = document.getElementById("board");
-    const observerConfig = {
+    // const target = document.getElementById("board");
+    // const target = document.body;
+    observer.observe(document.body, {
         subtree: true,
-        childList: true,
-        attributes: true
-    };
-    observer.observe(target, observerConfig);
+        childList: true
+    });
 }
 
-// the event listener load does not work on first load, only work on reload..
-// window.onload = () => {
-//     console.log("the page is loaded");
-//     let cardlists = document.querySelectorAll(".list-card.js-member-droppable.ui-droppable");
-//     console.log("finding cards", cardlists);
-//     main();
-// };
-
-// window.addEventListener("load", () => {
-//     console.log("the page is loaded");
-//     main();
-// });
+main();
