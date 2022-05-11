@@ -56,8 +56,7 @@ function changeBackgroundColour(card, listOfColours){
 }
 
 function fillAllCards(){
-    // let listOfCards = document.querySelectorAll(".list-card.js-member-droppable.ui-droppable");
-    let listOfCards = document.querySelectorAll(".list-card");
+    let listOfCards = document.querySelectorAll(".list-card-details");
     console.log("finding cards", listOfCards.length);
     listOfCards.forEach(card => {
         listOfColours = getLabelColours(card);
@@ -67,11 +66,9 @@ function fillAllCards(){
 
 function main(){
     loadAllLabelText();
-    // fillAllCards();
     console.log("loading mutation observer");
     var observer = new MutationObserver(() => {
         console.log("observed mutation");
-        // loadAllLabelText();
         fillAllCards();
         console.log("card colours refreshed");
     });
