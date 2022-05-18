@@ -1,6 +1,3 @@
-Experimenting with trello as a firefox addon.
-
-What it currently does:
-- Add background colours to cards according to the labels
+A firefox addon to fill trello card with its label colour(s). Inspired by the Chrome extension Trello Card Colors.
 
 Disclaimer: I don't really know Javascript.
