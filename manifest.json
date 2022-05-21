@@ -1,11 +1,11 @@
 {
 
     "manifest_version": 2,
-    "name": "Trello Addon",
-    "version": "1.0",
+    "name": "Trellook",
+    "version": "0.0.1",
   
     "description": "Changing some visuals on trello.com",
-    "homepage_url": "https://github.com/definitivegaze/trello-ff-addon",
+    "homepage_url": "https://github.com/definitivegaze/trellook",
   
     "icons": {
       "48": "icons/colour-icon.png"
@@ -14,7 +14,7 @@
     "content_scripts": [
       {
         "matches": ["*://*.trello.com/*"],
-        "js": ["trello-experiment.js"]
+        "js": ["trellook.js"]
       }
     ]
   
