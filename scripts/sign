@@ -1,0 +1,5 @@
+export JWT_ISSUER=$(head -1 secrets.txt)
+export JWT_SECRET=$(tail -1 secrets.txt)
+echo $JWT_ISSUER
+echo $JWT_SECRET
+# web-ext sign --api-key=$JWT_ISSUER --api-secret=$JWT_SECRET

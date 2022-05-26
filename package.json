@@ -5,6 +5,7 @@
   "scripts": {
     "start:firefox": "TMPDIR=~/tmp-dir-firefox/ web-ext run --start-url=https://trello.com/b/mhcviawa/test-board",
     "build": "web-ext build",
-    "lint": "web-ext lint"
+    "lint": "web-ext lint",
+    "sign": "./scripts/sign"
   }
 }
