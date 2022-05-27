@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $(cat /etc/lsb-release | grep DISTRIB_ID | cut -d '=' -f 2) == "Ubuntu" ]
+    then 
+        mkdir -p ~/tmp-dir-firefox && export TMPDIR=~/tmp-dir-firefox/ 
+fi
+
+web-ext run --start-url=https://trello.com/b/mhcviawa/test-board

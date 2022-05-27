@@ -3,7 +3,7 @@
     "web-ext": "^6.8.0"
   },
   "scripts": {
-    "start:firefox": "TMPDIR=~/tmp-dir-firefox/ web-ext run --start-url=https://trello.com/b/mhcviawa/test-board",
+    "start:firefox": "./scripts/run",
     "build": "web-ext build",
     "lint": "web-ext lint",
     "sign": "./scripts/sign"
