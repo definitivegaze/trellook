@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export JWT_ISSUER=$(head -1 secrets.txt)
-export JWT_SECRET=$(tail -1 secrets.txt)
-echo $JWT_ISSUER
-echo $JWT_SECRET
-# web-ext sign --api-key=$JWT_ISSUER --api-secret=$JWT_SECRET
+export JWT_ISSUER=$(head -1 ../firefox-secrets.txt)
+export JWT_SECRET=$(tail -1 ../firefox-secrets.txt)
+web-ext sign --api-key=$JWT_ISSUER --api-secret=$JWT_SECRET
