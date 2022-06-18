@@ -2,4 +2,4 @@
 
 export JWT_ISSUER=$(head -1 ../firefox-secrets.txt)
 export JWT_SECRET=$(tail -1 ../firefox-secrets.txt)
-web-ext sign --api-key=$JWT_ISSUER --api-secret=$JWT_SECRET
+web-ext sign --api-key=$JWT_ISSUER --api-secret=$JWT_SECRET --id="{393c35db-14bc-434a-a887-ae988aa7352e}"
