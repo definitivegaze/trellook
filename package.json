@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "web-ext": "^6.8.0"
+  },
+  "scripts": {
+    "start:firefox": "./scripts/run",
+    "build": "web-ext build",
+    "lint": "web-ext lint",
+    "sign": "./scripts/sign"
+  }
+}
